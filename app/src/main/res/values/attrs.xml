@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RingProgressView">
+        <attr name="ringStrokeWidth" format="dimension"/>
+        <attr name="ringLarge" format="boolean"/>
+    </declare-styleable>
+</resources>
