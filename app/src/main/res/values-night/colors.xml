@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_dark">#060E18</color>
+    <color name="neon_blue">#00B4FF</color>
+    <color name="neon_blue_light">#5DD6FF</color>
+    <color name="neon_green">#00C878</color>
+    <color name="btn_primary">#00B4FF</color>
+    <color name="btn_primary_text">#001A2E</color>
+    <color name="btn_secondary_text">#AAAAAA</color>
+    <color name="card_text_primary">#FFFFFF</color>
+    <color name="card_text_secondary">#AAAAAA</color>
+    <color name="app_label_color">#55FFFFFF</color>
+    <color name="pct_text_color">#00B4FF</color>
+    <color name="goal_text_color">#44FFFFFF</color>
+    <color name="mot_text_color">#5DD6FF</color>
+    <color name="stat_label_color">#44FFFFFF</color>
+    <color name="btn_secondary_bg">#1AFFFFFF</color>
+</resources>

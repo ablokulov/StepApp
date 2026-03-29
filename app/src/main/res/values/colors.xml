@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg_dark">#060E18</color>
-    <color name="neon_blue">#00B4FF</color>
-    <color name="neon_blue_light">#5DD6FF</color>
-    <color name="neon_green">#00C878</color>
-    <color name="card_border">#1A0088BB</color>
-    <color name="white">#FFFFFF</color>
+    <color name="bg_dark">#F7F8FF</color>
+    <color name="neon_blue">#4F46E5</color>
+    <color name="neon_blue_light">#4338CA</color>
+    <color name="neon_green">#16A34A</color>
+    <color name="btn_primary">#4F46E5</color>
+    <color name="btn_primary_text">#FFFFFF</color>
+    <color name="btn_secondary_text">#64748B</color>
+    <color name="card_text_primary">#1E293B</color>
+    <color name="card_text_secondary">#94A3B8</color>
+    <color name="app_label_color">#A0AEC0</color>
+    <color name="pct_text_color">#4F46E5</color>
+    <color name="goal_text_color">#94A3B8</color>
+    <color name="mot_text_color">#4338CA</color>
+    <color name="stat_label_color">#94A3B8</color>
+    <color name="btn_secondary_bg">#0FF1F5F9</color>
 </resources>

@@ -46,12 +46,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Tema eng birinchi qo'llanilishi kerak
+        ThemeManager.apply(ThemeManager.load(this))
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        window.statusBarColor = android.graphics.Color.parseColor("#060E18")
-        window.navigationBarColor = android.graphics.Color.parseColor("#060E18")
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
@@ -65,15 +65,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
         val lastDate = prefs.getString(KEY_DATE, "")
 
-        // Haftalik ma'lumotlarni yuklash
         val weekStr = prefs.getString(KEY_WEEK, "0,0,0,0,0,0,0") ?: "0,0,0,0,0,0,0"
         weekSteps = weekStr.split(",").map { it.toIntOrNull() ?: 0 }.toIntArray()
 
         if (lastDate != today) {
-            // Yangi kun: eski kunni haftalikka siljitish
             for (i in 0..5) weekSteps[i] = weekSteps[i + 1]
             weekSteps[6] = 0
-
             prefs.edit()
                 .putString(KEY_DATE, today)
                 .putLong(KEY_INIT, -1L)
@@ -92,9 +89,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private fun setupUI() {
         updateUI()
-
         binding.btnSetGoal.setOnClickListener { showGoalDialog() }
-        binding.btnReset.setOnClickListener { resetSteps() }
+        binding.btnReset.setOnClickListener { showThemeDialog() }
     }
 
     private fun checkPermission() {
@@ -117,15 +113,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         when {
             stepCounterSensor != null -> {
                 sensorManager.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_UI)
-                binding.tvSensorStatus.text = "● Sensor faol"
+                binding.tvSensorStatus.text = "● Faol"
             }
             stepDetectorSensor != null -> {
                 sensorManager.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_UI)
-                binding.tvSensorStatus.text = "● Detektor faol"
+                binding.tvSensorStatus.text = "● Faol"
             }
             else -> {
                 binding.tvSensorStatus.text = "○ Sensor yo'q"
-                binding.tvSensorStatus.setTextColor(android.graphics.Color.parseColor("#FF4444"))
             }
         }
     }
@@ -159,23 +154,19 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val distanceKm = currentSteps * 0.762 / 1000.0
         val minutes = currentSteps / 100
 
-        // Asosiy qadam ring
         binding.ringView.setProgress(pct)
         binding.tvStepCount.text = "%,d".format(currentSteps)
         binding.tvPercent.text = "$pct%"
         binding.tvGoalSub.text = "/ %,d maqsad".format(dailyGoal)
 
-        // Statistika
         binding.tvCalories.text = "$calories"
         binding.tvDistance.text = "%.2f".format(distanceKm)
         binding.tvMinutes.text = "$minutes"
 
-        // Mini ring progresslar
         binding.calRing.setProgress((calories.toFloat() / 800 * 100).toInt().coerceAtMost(100))
         binding.distRing.setProgress((distanceKm / 15 * 100).toInt().coerceAtMost(100))
         binding.timeRing.setProgress((minutes.toFloat() / 180 * 100).toInt().coerceAtMost(100))
 
-        // Motivatsiya
         binding.tvMotivation.text = when {
             currentSteps == 0 -> "Yuring! Sog'lik – boylik!"
             currentSteps < dailyGoal / 4 -> "Ajoyib boshladingiz!"
@@ -184,7 +175,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             else -> "Maqsadga yetdingiz! Barakalla!"
         }
 
-        // Haftalik grafik yangilash
         weekSteps[6] = currentSteps
         binding.weekChart.setData(weekSteps, dailyGoal)
     }
@@ -193,8 +183,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val input = android.widget.EditText(this).apply {
             inputType = android.text.InputType.TYPE_CLASS_NUMBER
             setText(dailyGoal.toString())
-            setTextColor(android.graphics.Color.WHITE)
-            setBackgroundColor(android.graphics.Color.parseColor("#1A2A3A"))
             setPadding(32, 24, 32, 24)
         }
         AlertDialog.Builder(this, R.style.NeonDialogTheme)
@@ -213,18 +201,20 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             .show()
     }
 
-    private fun resetSteps() {
+    private fun showThemeDialog() {
+        val modes = arrayOf("☀️ Yorug'", "🌙 Qorong'u", "📱 Tizim")
+        val current = ThemeManager.load(this).ordinal
+
         AlertDialog.Builder(this, R.style.NeonDialogTheme)
-            .setTitle("Nollash")
-            .setMessage("Bugungi qadamlarni noldan boshlaysizmi?")
-            .setPositiveButton("Ha") { _, _ ->
-                currentSteps = 0
-                initialSteps = -1L
-                getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit()
-                    .putLong(KEY_INIT, -1L).putInt(KEY_DAILY, 0).apply()
-                updateUI()
+            .setTitle("Tema tanlash")
+            .setSingleChoiceItems(modes, current) { dialog, which ->
+                val mode = ThemeManager.Mode.values()[which]
+                ThemeManager.save(this, mode)
+                ThemeManager.apply(mode)
+                dialog.dismiss()
+                recreate()
             }
-            .setNegativeButton("Yo'q", null)
+            .setNegativeButton("Bekor", null)
             .show()
     }
 
