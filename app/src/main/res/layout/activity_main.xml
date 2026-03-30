@@ -128,6 +128,7 @@
             android:weightSum="3"
             android:layout_marginBottom="12dp">
 
+            <!-- Kaloriya -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -138,11 +139,19 @@
                 android:gravity="center"
                 android:padding="10dp">
 
+                <!-- Emoji icon -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔥"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="2dp"/>
+
                 <com.example.stepcounter.RingProgressView
                     android:id="@+id/calRing"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:ringStrokeWidth="5dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:ringStrokeWidth="4dp"
                     app:ringLarge="false"/>
 
                 <TextView
@@ -153,7 +162,7 @@
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:textColor="@color/card_text_primary"
-                    android:layout_marginTop="6dp"/>
+                    android:layout_marginTop="4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -164,6 +173,7 @@
 
             </LinearLayout>
 
+            <!-- Masofa -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -175,11 +185,19 @@
                 android:gravity="center"
                 android:padding="10dp">
 
+                <!-- Emoji icon -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📍"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="2dp"/>
+
                 <com.example.stepcounter.RingProgressView
                     android:id="@+id/distRing"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:ringStrokeWidth="5dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:ringStrokeWidth="4dp"
                     app:ringLarge="false"/>
 
                 <TextView
@@ -190,7 +208,7 @@
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:textColor="@color/card_text_primary"
-                    android:layout_marginTop="6dp"/>
+                    android:layout_marginTop="4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -201,6 +219,7 @@
 
             </LinearLayout>
 
+            <!-- Vaqt -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -211,11 +230,19 @@
                 android:gravity="center"
                 android:padding="10dp">
 
+                <!-- Emoji icon -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⏱"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="2dp"/>
+
                 <com.example.stepcounter.RingProgressView
                     android:id="@+id/timeRing"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:ringStrokeWidth="5dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    app:ringStrokeWidth="4dp"
                     app:ringLarge="false"/>
 
                 <TextView
@@ -226,7 +253,7 @@
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:textColor="@color/card_text_primary"
-                    android:layout_marginTop="6dp"/>
+                    android:layout_marginTop="4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -252,34 +279,55 @@
             android:padding="10dp"
             android:layout_marginBottom="12dp"/>
 
+
         <!-- Tugmalar -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
+            android:orientation="vertical"
             android:layout_marginBottom="14dp">
 
-            <Button
-                android:id="@+id/btnSetGoal"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="6dp"
-                android:text="🎯 Maqsad"
-                android:textColor="@color/btn_primary_text"
-                android:textStyle="bold"
-                android:backgroundTint="@color/btn_primary"
-                android:stateListAnimator="@null"/>
+            <!-- Birinchi qator: Maqsad + Tema -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="8dp">
 
+                <Button
+                    android:id="@+id/btnSetGoal"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="🎯 Maqsad"
+                    android:textColor="@color/btn_primary_text"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/btn_primary"
+                    android:stateListAnimator="@null"/>
+
+                <Button
+                    android:id="@+id/btnReset"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="🎨 Tema"
+                    android:textColor="@color/btn_secondary_text"
+                    android:backgroundTint="@color/btn_secondary_bg"
+                    android:stateListAnimator="@null"/>
+
+            </LinearLayout>
+
+            <!-- Ikkinchi qator: Nollash -->
             <Button
-                android:id="@+id/btnReset"
-                android:layout_width="0dp"
+                android:id="@+id/btnNollash"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_weight="1"
-                android:layout_marginStart="6dp"
-                android:text="🎨 Tema"
-                android:textColor="@color/btn_secondary_text"
+                android:text="🔄 Nollash"
+                android:textColor="#E53935"
+                android:textStyle="bold"
                 android:backgroundTint="@color/btn_secondary_bg"
                 android:stateListAnimator="@null"/>
 

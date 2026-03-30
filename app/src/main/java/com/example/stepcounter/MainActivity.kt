@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Tema eng birinchi qo'llanilishi kerak
         ThemeManager.apply(ThemeManager.load(this))
 
         super.onCreate(savedInstanceState)
@@ -91,6 +90,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         updateUI()
         binding.btnSetGoal.setOnClickListener { showGoalDialog() }
         binding.btnReset.setOnClickListener { showThemeDialog() }
+        binding.btnNollash.setOnClickListener { resetSteps() }
     }
 
     private fun checkPermission() {
@@ -215,6 +215,24 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 recreate()
             }
             .setNegativeButton("Bekor", null)
+            .show()
+    }
+
+    private fun resetSteps() {
+        AlertDialog.Builder(this, R.style.NeonDialogTheme)
+            .setTitle("Nollash")
+            .setMessage("Bugungi qadamlarni noldan boshlaysizmi?")
+            .setPositiveButton("Ha") { _, _ ->
+                currentSteps = 0
+                initialSteps = -1L
+                getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit()
+                    .putLong(KEY_INIT, -1L)
+                    .putInt(KEY_DAILY, 0)
+                    .apply()
+                updateUI()
+                Toast.makeText(this, "Qadamlar nollandi!", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Yo'q", null)
             .show()
     }
 
