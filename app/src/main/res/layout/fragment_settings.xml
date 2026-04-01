@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SOZLAMALAR"
+            android:textSize="11sp"
+            android:textColor="@color/app_label_color"
+            android:letterSpacing="0.2"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Maqsad -->
+        <LinearLayout android:id="@+id/itemGoal" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/card_neon" android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp" android:layout_marginBottom="8dp" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🎯" android:textSize="20sp" android:layout_marginEnd="12dp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kunlik maqsad" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/card_text_primary"/>
+                <TextView android:id="@+id/tvGoalValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10,000 qadam" android:textSize="11sp" android:textColor="@color/stat_label_color" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textSize="20sp" android:textColor="@color/stat_label_color"/>
+        </LinearLayout>
+
+        <!-- Tema -->
+        <LinearLayout android:id="@+id/itemTheme" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/card_neon" android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp" android:layout_marginBottom="8dp" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🎨" android:textSize="20sp" android:layout_marginEnd="12dp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tema" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/card_text_primary"/>
+                <TextView android:id="@+id/tvThemeValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tizim" android:textSize="11sp" android:textColor="@color/stat_label_color" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textSize="20sp" android:textColor="@color/stat_label_color"/>
+        </LinearLayout>
+
+        <!-- Vazn -->
+        <LinearLayout android:id="@+id/itemWeight" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/card_neon" android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp" android:layout_marginBottom="8dp" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⚖️" android:textSize="20sp" android:layout_marginEnd="12dp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vazn" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/card_text_primary"/>
+                <TextView android:id="@+id/tvWeightValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="70 kg" android:textSize="11sp" android:textColor="@color/stat_label_color" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textSize="20sp" android:textColor="@color/stat_label_color"/>
+        </LinearLayout>
+
+        <!-- Qadam uzunligi -->
+        <LinearLayout android:id="@+id/itemStride" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/card_neon" android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp" android:layout_marginBottom="8dp" android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📏" android:textSize="20sp" android:layout_marginEnd="12dp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Qadam uzunligi" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/card_text_primary"/>
+                <TextView android:id="@+id/tvStrideValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0.762 m" android:textSize="11sp" android:textColor="@color/stat_label_color" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="›" android:textSize="20sp" android:textColor="@color/stat_label_color"/>
+        </LinearLayout>
+
+        <!-- Ilovalar haqida -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/card_neon" android:orientation="horizontal" android:gravity="center_vertical" android:padding="16dp" android:layout_marginBottom="8dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ℹ️" android:textSize="20sp" android:layout_marginEnd="12dp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ilova haqida" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/card_text_primary"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Qadam Sanagich v1.0" android:textSize="11sp" android:textColor="@color/stat_label_color" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_height="24dp" android:layout_width="match_parent"/>
+    </LinearLayout>
+</ScrollView>

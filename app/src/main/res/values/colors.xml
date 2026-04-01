@@ -15,4 +15,9 @@
     <color name="mot_text_color">#4338CA</color>
     <color name="stat_label_color">#94A3B8</color>
     <color name="btn_secondary_bg">#0FF1F5F9</color>
+    <color name="nav_inactive">#55FFFFFF</color>
+    <color name="nav_bg">#0A1520</color>
+    <color name="bottom_nav_bg">#0A1520</color>
+    <color name="nav_indicator">#1A00B4FF</color>
+<!--    <color name="bottom_nav_bg">#ECEFFE</color>-->
 </resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HAFTALIK STATISTIKA"
+            android:textSize="11sp"
+            android:textColor="@color/app_label_color"
+            android:letterSpacing="0.2"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- 3 katta raqam -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="5dp" android:background="@drawable/card_neon" android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                <TextView android:id="@+id/tvToday" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/card_text_primary"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bugun" android:textSize="9sp" android:textColor="@color/stat_label_color" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="3dp" android:layout_marginEnd="3dp" android:background="@drawable/card_neon" android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                <TextView android:id="@+id/tvAverage" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/card_text_primary"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="O'rtacha" android:textSize="9sp" android:textColor="@color/stat_label_color" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="5dp" android:background="@drawable/card_neon" android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                <TextView android:id="@+id/tvTotal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textSize="24sp" android:textStyle="bold" android:textColor="@color/card_text_primary"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Jami" android:textSize="9sp" android:textColor="@color/stat_label_color" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Haftalik grafik -->
+        <com.example.stepcounter.WeekChartView
+            android:id="@+id/statsChart"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@drawable/card_neon"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Progress barlar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_neon"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Kaloriya -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="🔥 Kaloriya" android:textSize="12sp" android:textColor="@color/card_text_secondary"/>
+                <TextView android:id="@+id/tvCalStat" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0 / 320 kkal" android:textSize="12sp" android:textColor="@color/card_text_primary" android:textStyle="bold"/>
+            </LinearLayout>
+            <ProgressBar android:id="@+id/pbCal" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="8dp" android:max="100" android:progress="0" android:progressDrawable="@drawable/progress_orange" android:layout_marginBottom="14dp"/>
+
+            <!-- Masofa -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="📍 Masofa" android:textSize="12sp" android:textColor="@color/card_text_secondary"/>
+                <TextView android:id="@+id/tvDistStat" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0.00 / 8 km" android:textSize="12sp" android:textColor="@color/card_text_primary" android:textStyle="bold"/>
+            </LinearLayout>
+            <ProgressBar android:id="@+id/pbDist" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="8dp" android:max="100" android:progress="0" android:progressDrawable="@drawable/progress_blue" android:layout_marginBottom="14dp"/>
+
+            <!-- Vaqt -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="⏱ Faollik" android:textSize="12sp" android:textColor="@color/card_text_secondary"/>
+                <TextView android:id="@+id/tvTimeStat" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0 / 60 daq" android:textSize="12sp" android:textColor="@color/card_text_primary" android:textStyle="bold"/>
+            </LinearLayout>
+            <ProgressBar android:id="@+id/pbTime" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="8dp" android:max="100" android:progress="0" android:progressDrawable="@drawable/progress_purple"/>
+        </LinearLayout>
+
+        <View android:layout_height="24dp" android:layout_width="match_parent"/>
+    </LinearLayout>
+</ScrollView>

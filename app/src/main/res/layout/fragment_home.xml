@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PEDOMETER"
+                android:textSize="11sp"
+                android:textColor="@color/app_label_color"
+                android:letterSpacing="0.2"/>
+
+            <TextView
+                android:id="@+id/tvSensorStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="● Faol"
+                android:textSize="10sp"
+                android:textColor="@color/neon_green"
+                android:background="@drawable/pill_green"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"/>
+        </LinearLayout>
+
+        <!-- Ring Progress -->
+        <RelativeLayout
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp">
+
+            <com.example.stepcounter.RingProgressView
+                android:id="@+id/ringView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:ringStrokeWidth="22dp"
+                app:ringLarge="true"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvStepCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/card_text_primary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="QADAM"
+                    android:textSize="9sp"
+                    android:textColor="@color/card_text_secondary"
+                    android:letterSpacing="0.15"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- Percent + Goal -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/pct_text_color"
+                android:background="@drawable/pill_blue"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/tvGoalSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/ 10000 maqsad"
+                android:textSize="11sp"
+                android:textColor="@color/goal_text_color"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- 3 Stat cards -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/card_neon"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="10dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🔥" android:textSize="20sp" android:layout_marginBottom="2dp"/>
+                <com.example.stepcounter.RingProgressView android:id="@+id/calRing" android:layout_width="36dp" android:layout_height="36dp" app:ringStrokeWidth="4dp" app:ringLarge="false"/>
+                <TextView android:id="@+id/tvCalories" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/card_text_primary" android:layout_marginTop="4dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="kkal" android:textSize="9sp" android:textColor="@color/stat_label_color"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:background="@drawable/card_neon"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="10dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📍" android:textSize="20sp" android:layout_marginBottom="2dp"/>
+                <com.example.stepcounter.RingProgressView android:id="@+id/distRing" android:layout_width="36dp" android:layout_height="36dp" app:ringStrokeWidth="4dp" app:ringLarge="false"/>
+                <TextView android:id="@+id/tvDistance" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0.00" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/card_text_primary" android:layout_marginTop="4dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="km" android:textSize="9sp" android:textColor="@color/stat_label_color"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/card_neon"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="10dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⏱" android:textSize="20sp" android:layout_marginBottom="2dp"/>
+                <com.example.stepcounter.RingProgressView android:id="@+id/timeRing" android:layout_width="36dp" android:layout_height="36dp" app:ringStrokeWidth="4dp" app:ringLarge="false"/>
+                <TextView android:id="@+id/tvMinutes" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/card_text_primary" android:layout_marginTop="4dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="daqiqa" android:textSize="9sp" android:textColor="@color/stat_label_color"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Motivatsiya -->
+        <TextView
+            android:id="@+id/tvMotivation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Yuring! Sog'lik – boylik!"
+            android:textSize="12sp"
+            android:textColor="@color/mot_text_color"
+            android:gravity="center"
+            android:background="@drawable/mot_bg"
+            android:padding="10dp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Tugmalar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnSetGoal"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="🎯 Maqsad"
+                    android:textColor="@color/btn_primary_text"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/btn_primary"
+                    android:stateListAnimator="@null"/>
+
+                <Button
+                    android:id="@+id/btnReset"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="🎨 Tema"
+                    android:textColor="@color/btn_secondary_text"
+                    android:backgroundTint="@color/btn_secondary_bg"
+                    android:stateListAnimator="@null"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnNollash"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="🔄 Nollash"
+                android:textColor="#E53935"
+                android:textStyle="bold"
+                android:backgroundTint="@color/btn_secondary_bg"
+                android:stateListAnimator="@null"/>
+        </LinearLayout>
+
+        <!-- Haftalik grafik -->
+        <com.example.stepcounter.WeekChartView
+            android:id="@+id/weekChart"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@drawable/card_neon"/>
+
+        <View android:layout_height="24dp" android:layout_width="match_parent"/>
+    </LinearLayout>
+</ScrollView>
