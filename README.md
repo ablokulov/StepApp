@@ -22,7 +22,7 @@ Ilova real-time tracking va motivatsion interfeys orqali foydalanuvchini faol ha
 
 ## 📦 APK Yuklab olish
 
-👉 [Download APK](https://github.com/your-username/stepcounter/releases/download/v1.0.0/app-release.apk)
+👉 [Download APK](https://github.com/ablokulov/StepApp/releases/download/v1.0.0/app-release.apk)
 
 ## ⚙️ Asosiy funksiyalar
 
