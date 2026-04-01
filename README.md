@@ -14,7 +14,10 @@ Ilova real-time tracking va motivatsion interfeys orqali foydalanuvchini faol ha
 ---
 ## 📸 Screenshot
 
-![StepCounter UI](https://github.com/user-attachments/assets/441471f4-75a9-49a1-950d-e63deebe435e)
+![StepCounter UI](https://github.com/user-attachments/assets/bbdd9bb1-20ce-44f9-b9c9-834e88630141)
+![StepCounter UI](https://github.com/user-attachments/assets/988aefb2-b8b7-4eaa-938c-1564b4a853f7)
+
+
 
 ## 📦 APK Yuklab olish
 
