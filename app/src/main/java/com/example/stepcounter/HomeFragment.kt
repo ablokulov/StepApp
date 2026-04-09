@@ -16,11 +16,14 @@ class HomeFragment : Fragment() {
 
     private val PREFS = "StepPrefs"
     private val KEY_GOAL = "goal"
-    private val KEY_WEEK = "weekData"
 
     var onGoalChanged: ((Int) -> Unit)? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,7 +35,15 @@ class HomeFragment : Fragment() {
         binding.btnNollash.setOnClickListener { showResetDialog() }
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Fragment ko'rsatilganda MainActivity dan ma'lumot olish
+        (activity as? MainActivity)?.updateHomeUI()
+    }
+
     fun updateUI(steps: Int, goal: Int, weekSteps: IntArray, sensorActive: Boolean) {
+        if (_binding == null) return
+
         val pct = ((steps.toFloat() / goal) * 100).toInt().coerceAtMost(100)
         val calories = (steps * 0.04).toInt()
         val distanceKm = steps * 0.762 / 1000.0
@@ -46,9 +57,15 @@ class HomeFragment : Fragment() {
         binding.tvDistance.text = "%.2f".format(distanceKm)
         binding.tvMinutes.text = "$minutes"
 
-        binding.calRing.setProgress((calories.toFloat() / 800 * 100).toInt().coerceAtMost(100))
-        binding.distRing.setProgress((distanceKm / 15 * 100).toInt().coerceAtMost(100))
-        binding.timeRing.setProgress((minutes.toFloat() / 180 * 100).toInt().coerceAtMost(100))
+        binding.calRing.setProgress(
+            (calories.toFloat() / 800 * 100).toInt().coerceAtMost(100)
+        )
+        binding.distRing.setProgress(
+            (distanceKm / 15 * 100).toInt().coerceAtMost(100)
+        )
+        binding.timeRing.setProgress(
+            (minutes.toFloat() / 180 * 100).toInt().coerceAtMost(100)
+        )
 
         binding.tvSensorStatus.text = if (sensorActive) "● Faol" else "○ Sensor yo'q"
 
@@ -60,6 +77,7 @@ class HomeFragment : Fragment() {
             else -> "Maqsadga yetdingiz! Barakalla!"
         }
 
+        weekSteps[6] = steps
         binding.weekChart.setData(weekSteps, goal)
     }
 
