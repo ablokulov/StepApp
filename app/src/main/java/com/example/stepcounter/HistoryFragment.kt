@@ -1,5 +1,6 @@
 package com.example.stepcounter
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,15 @@ class HistoryFragment : Fragment() {
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    private val PREFS = "StepPrefs"
+    private val KEY_WEEK = "weekData"
+    private val KEY_GOAL = "goal"
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -25,10 +34,29 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvHistory.layoutManager = LinearLayoutManager(requireContext())
+        loadHistory()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadHistory()
+    }
+
+    private fun loadHistory() {
+        val prefs = requireContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        val goal = prefs.getInt(KEY_GOAL, 10000)
+        val weekStr = prefs.getString(KEY_WEEK, "0,0,0,0,0,0,0") ?: "0,0,0,0,0,0,0"
+        val weekSteps = weekStr.split(",").map { it.toIntOrNull() ?: 0 }.toIntArray()
+
+        // Bugungi qadamni MainActivity dan olish
+        val todaySteps = (activity as? MainActivity)?.currentSteps ?: weekSteps[6]
+        weekSteps[6] = todaySteps
+
+        updateHistory(weekSteps, goal)
     }
 
     fun updateHistory(weekSteps: IntArray, goal: Int) {
-        val maxSteps = weekSteps.maxOrNull()?.coerceAtLeast(1) ?: goal
+        val maxSteps = weekSteps.maxOrNull()?.coerceAtLeast(goal) ?: goal
         val cal = Calendar.getInstance()
         val sdf = SimpleDateFormat("dd MMM", Locale("uz"))
 
@@ -40,10 +68,12 @@ class HistoryFragment : Fragment() {
                 else -> {
                     cal.time = Date()
                     cal.add(Calendar.DAY_OF_YEAR, -daysAgo)
-                    sdf.format(cal.time)
+                    val result = sdf.format(cal.time)
+                    cal.time = Date()
+                    result
                 }
             }
-            Pair(label, steps)
+            Triple(label, steps, goal)
         }.reversed()
 
         binding.rvHistory.adapter = HistoryAdapter(items, maxSteps)
@@ -56,7 +86,7 @@ class HistoryFragment : Fragment() {
 }
 
 class HistoryAdapter(
-    private val items: List<Pair<String, Int>>,
+    private val items: List<Triple<String, Int, Int>>,
     private val maxSteps: Int
 ) : RecyclerView.Adapter<HistoryAdapter.VH>() {
 
@@ -68,10 +98,29 @@ class HistoryAdapter(
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val (label, steps) = items[position]
-        holder.binding.tvDate.text = label
-        holder.binding.tvSteps.text = "%,d".format(steps)
-        holder.binding.pbDay.progress = if (maxSteps > 0) (steps.toFloat() / maxSteps * 100).toInt() else 0
+        val (label, steps, goal) = items[position]
+        holder.binding.tvHistDate.text = label
+        holder.binding.tvHistSteps.text = "%,d".format(steps)
+        holder.binding.pbHistBar.progress =
+            if (maxSteps > 0) (steps.toFloat() / maxSteps * 100).toInt().coerceAtMost(100) else 0
+
+        // Bugun bo'lsa rang farqli
+        if (label == "Bugun") {
+            holder.binding.tvHistSteps.setTextColor(
+                android.graphics.Color.parseColor("#00B4FF")
+            )
+        } else {
+            holder.binding.tvHistSteps.setTextColor(
+                android.graphics.Color.WHITE
+            )
+        }
+
+        // Maqsadga yetgan bo'lsa yashil
+        if (steps >= goal) {
+            holder.binding.pbHistBar.progressDrawable?.setTint(
+                android.graphics.Color.parseColor("#00C878")
+            )
+        }
     }
 
     override fun getItemCount() = items.size

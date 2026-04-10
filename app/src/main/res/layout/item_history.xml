@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvDate"
+            android:id="@+id/tvHistDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bugun"
@@ -24,7 +24,7 @@
             android:textColor="@color/card_text_primary"/>
 
         <ProgressBar
-            android:id="@+id/pbDay"
+            android:id="@+id/pbHistBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="6dp"
@@ -32,10 +32,11 @@
             android:progress="50"
             android:progressDrawable="@drawable/progress_blue"
             android:layout_marginTop="6dp"/>
+
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvSteps"
+        android:id="@+id/tvHistSteps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
